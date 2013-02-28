@@ -1,0 +1,47 @@
+* Lesson
+** Introduction
+  - (Lis)t (P)rocessing aka Lisp
+  - Second oldest high-level programming language
+  - Invented John McCarthy at MIT in 1958
+  - Leading family of functional programming languages
+** Structure of the Language
+  - Parenthesized prefix notation
+  - Data is contained in s-expressions
+  - Code is data
+  - Everything in Lisp is either an atom or a list.
+*** Atoms
+    - Represent the most basic data types in Lisp.
+**** Examples
+     - numbers: 9, 12.2, 9e10, #x2f, 10/3
+     - strings: "bob"
+     - chars:    #\a,  #\linefeed
+     - constants: nil, t, pi, :keyword
+     - variables: foo, my-variable, *other-var*
+*** Cons Cells
+    - Stands for "construct"
+    - data structure containing two pointers
+    - like a linked-list cell with two elements
+      a pointer to the cells value
+      a pointer to the next cell
+    - Create a cons cell with (cons 1 2)
+    - INSERT DIAGRAM HERE
+**** car and cdr
+     - =car= returns the value of the first element of a cons cell
+     - (car (cons 1 2)) returns 1
+     - Alternate notation: (first (cons 1 2))
+     - =cdr= returns the value of the second element of a cons cell
+     - (cdr (cons 1 2)) returns 2
+     - Alternate notation: (rest (cons 1 2))
+     - =car= stands for "Contents of the Address part of Register number"
+     - =cdr= stands for "Contents of the Decrement part of Register number"
+     - The names are historical and do not have any current meaning.
+*** Lists
+    - Ordered collection of cons cells
+    - The =cdr= of each cons is a pointer to the next cons, just like a linked list.
+    - The last element in a list has a =nil= =cdr=, signifying the end of the list.
+    - Nested lists are expressed in a parenthesized notation known as an *S-expression*.
+#+BEGIN_SRC cl
+((kurmas wolffe engelsma nandigam)
+ (c ruby lisp ada))
+#+END_SRC
+    - S-expressions can be thought of a trees
