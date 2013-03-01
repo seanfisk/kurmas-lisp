@@ -274,7 +274,8 @@ A contrived example of the use of \cl|progn| with \cl|if|:
 \item Allows definition of multiple variables that are accessible
   within the scope of the body. The general form is:
 \begin{clcode}
-(let ((var1 value) (var2 value) ... (varn value)) body...)
+(let ((var1 value) (var2 value) ... (varn value))
+  body...)
 \end{clcode}
 \item The last statement in the body is returned.
 \end{itemize}
@@ -307,7 +308,7 @@ A contrived example of the use of \cl|progn| with \cl|if|:
   \begin{clcode}
 (defun my-square (num)
   "Return the square of NUM."
-  (* x x))
+  (* num num))
   \end{clcode}
 \end{frame}
 
@@ -324,22 +325,21 @@ Here is a skeleton:
 
 Expected results:
 \begin{clcode}
-  (my-count nil) -> 0
-  (my-count '()) -> 0
-  (my-count '(a b c)) -> 3
-  (my-count '(i get the point)) -> 4
+(my-count nil) -> 0
+(my-count '()) -> 0
+(my-count '(a b c)) -> 3
+(my-count '(i get the point)) -> 4
 \end{clcode}
 \end{frame}
 
 \begin{frame}[fragile]{Practice Problems: \texttt{my-count}: Solution}
 Possible solution:
-  \begin{clcode}
+\begin{clcode}
 (defun my-count (list)
   "Return the number of elements in LIST."
-  (let ((next-cell (cdr l)))
-    (if next-cell
-        (1+ (my-count next-cell))
-      1)))
+  (if (car list)
+      (1+ (my-count (cdr list)))
+    0))
   \end{clcode}
 \end{frame}
 
@@ -348,9 +348,9 @@ Define a recursive function \texttt{my-last} that returns the last element in a 
 
 Expected results:
 \begin{clcode}
-  (my-last nil) -> nil
-  (my-last '(hello world)) -> (world)
-  (my-last '(a b c d)) -> (d)
+(my-last nil) -> nil
+(my-last '(hello world)) -> (world)
+(my-last '(a b c d)) -> (d)
 \end{clcode}
 \end{frame}
 
@@ -363,7 +363,7 @@ Should behave similar to `last'."
   (let ((next-cell (cdr list)))
     (if next-cell
         (my-last next-cell)
-      list))
+      list)))
   \end{clcode}
 \end{frame}
 
@@ -373,9 +373,9 @@ Should behave similar to `last'."
 
 Expected results:
 \begin{clcode}
-  (my-reverse nil) -> nil
-  (my-reverse '(a)) -> (a)
-  (my-reverse '(a b c d)) -> (d c b a)
+(my-reverse nil) -> nil
+(my-reverse '(a)) -> (a)
+(my-reverse '(a b c d)) -> (d c b a)
 \end{clcode}
 \end{frame}
 
