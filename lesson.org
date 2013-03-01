@@ -4,6 +4,13 @@
   - Second oldest high-level programming language
   - Invented John McCarthy at MIT in 1958
   - Leading family of functional programming languages
+  - Used extensively in the area of Artificial Intelligence
+** Functional Programming
+   Functional language treat computation as the evaluation of mathematical functions.
+*** Functions have no side effect   
+    They avoid mutable data, aka, changing values outside of a functions scope
+    Lisp can be written functionally, but is not a purely functional language as it may also
+    be written with typical imperative or object-oriented approaches.
 ** Structure of the Language
   - Parenthesized prefix notation
   - Data is contained in s-expressions
@@ -40,8 +47,105 @@
     - The =cdr= of each cons is a pointer to the next cons, just like a linked list.
     - The last element in a list has a =nil= =cdr=, signifying the end of the list.
     - Nested lists are expressed in a parenthesized notation known as an *S-expression*.
-#+BEGIN_SRC cl
+#+BEGIN_SRC lisp
 ((kurmas wolffe engelsma nandigam)
  (c ruby lisp ada))
 #+END_SRC
     - S-expressions can be thought of a trees
+*** Function calls
+    - The first element of an evaluated list is the function name to be called
+    - The rest of the elements are arguments to the function
+    - The arguments may themselves contain lists to be evaluated
+    - Examples:
+      =2 + 3 * 5= would be written =(+ 2 (* 3 5))=
+      =a and (b or c)= would be written =(and a (or b c))=
+      =foo(x, y)= (in a C-like language) would be written =(foo x y)=
+*** Quoting
+    - Quoting delays evaluation of an S-expression
+    (+ 2 3) -> 5
+    '(+ 2 3) -> (+ 2 3)
+    - Without quoting, the first element of a list is treated as a function.
+
+*** Writing Lisp
+**** Define functions
+     - (defun name(args) body)
+     - There are optional and default paramenters, but we wont' go over them today
+#+BEGIN_SRC lisp
+(defun foo(x y)
+   (+ x y))
+#+END_SRC
+***** returning
+      - in general, don't use it
+      - (return-from blockname value)
+**** using if-then
+     - (if condition expression expression)
+     - first expression evaluates if condition is not nil
+     - second expression evaluates if confition is nil
+     - to evaluate multiple expressions, use progn, or maybe block
+     - nil == false in other languages, everything else == true in conditions.
+       unlike C, 0 is not considered false.
+       ( if 3 (print "hi")) == (if t (print "hi"))
+**** progn
+     - (progn body)
+     - evaluates all expression in body
+**** defining variables
+***** Let
+      - (let ((var1 value) (var2 value) ... (var3 value)) body)
+      lets you define a number of varibles that are accessible within the scope
+      nof the body.
+      - The last statement in the body is returned
+***** defvar
+      - (defvar name value)
+      - These variables are global! So don't use it often.
+      - Doesn't fit the functional paradigm
+*** Demo
+**** my-count
+     A recursive function that return the number of elements in a list
+     - you can't use (length)!
+***** Solution
+#+BEGIN_SRC lisp    
+(defun my-last(l)
+  "Returns the last elemenent in the list."
+  (let ((next-cell (cdr l)))
+    (if next-cell
+	(my-last next-cell)
+      (car l))))
+#+END_SRC
+
+
+*** Practice
+**** my-sqr
+     Returns the paramenter sqared
+***** Solution   
+#+BEGIN_SRC lisp    
+(defun my-sqr(x)
+  "Returns x^2."
+  (* x x))
+#+END_SRC
+
+**** my-last
+   A recursive function that return the last element in a list
+   You can't use (last)!
+***** Solution   
+#+BEGIN_SRC lisp    
+(defun my-count(l)
+  "Returns the length of the list."
+  (let ((next-cell (cdr l)))
+    (if next-cell
+	(+ 1 (my-count next-cell))
+      1 )))
+#+END_SRC
+
+**** my-reverse
+   A recursive function that returns the reverse of a list
+***** Solution   
+#+BEGIN_SRC lisp    
+(defun my-reverse(l)
+  "Returns l a reversed copy of l."
+  (if (cdr l)
+      (then 
+       (append (last l) (my-reverse (butlast l))))
+    (else l)))
+#+END_SRC
+
+      
