@@ -5,6 +5,12 @@
   - Invented John McCarthy at MIT in 1958
   - Leading family of functional programming languages
   - Used extensively in the area of Artificial Intelligence
+** Functional Programming
+   Functional language treat computation as the evaluation of mathematical functions.
+*** Functions have no side effect   
+    They avoid mutable data, aka, changing values outside of a functions scope
+    Lisp can be written functionally, but is not a purely functional language as it may also
+    be written with typical imperative or object-oriented approaches.
 ** Structure of the Language
   - Parenthesized prefix notation
   - Data is contained in s-expressions
@@ -86,7 +92,7 @@
 ***** Let
       - (let ((var1 value) (var2 value) ... (var3 value)) body)
       lets you define a number of varibles that are accessible within the scope
-      of the body.
+      nof the body.
       - The last statement in the body is returned
 ***** defvar
       - (defvar name value)
@@ -121,14 +127,14 @@
    A recursive function that return the last element in a list
    You can't use (last)!
 ***** Solution   
-   #+BEGIN_SRC lisp    
+#+BEGIN_SRC lisp    
 (defun my-count(l)
   "Returns the length of the list."
   (let ((next-cell (cdr l)))
     (if next-cell
 	(+ 1 (my-count next-cell))
       1 )))
-   #+END_SRC
+#+END_SRC
 
 **** my-reverse
    A recursive function that returns the reverse of a list
