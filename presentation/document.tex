@@ -13,6 +13,10 @@
 
 \usepackage{tabu}
 
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+
+\newcommand{\mailtohref}[1]{\href{mailto:#1}{$<$\nolinkurl{#1}$>$}}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 
 \title[Lisp Introduction]{Introduction to Lisp}
@@ -329,5 +333,15 @@ Expected results:
     Projects Agency (DARPA).
   \item \textbf{The Emacs Editor:} 80\% is written in Emacs Lisp.
   \end{itemize}
+\end{frame}
+
+\begin{frame}{Credits}
+  Written by:
+  \begin{itemize}
+  \item Sean Fisk \mailtohref{fiskse@mail.gvsu.edu}
+  \item Jordon Biondo \mailtohref{biondoj@mail.gvsu.edu}
+  \end{itemize}
+  The following free and open-source software was used to produce this presentation: \\
+  \LaTeX, Beamer, Minted, Pygments, Emacs, AUCTeX, SCons, Clisp
 \end{frame}
 \end{document}
