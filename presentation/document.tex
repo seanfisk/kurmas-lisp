@@ -68,8 +68,8 @@
 
   \begin{tabu}{| X | X |}
     \hline
-    Numbers & \cl|9|, \cl|12.2|, \cl|9e10|, \cl|\#x2f|, \cl|10/3| \\ \hline
-    Strings & \cl|"Bob"|, \cl|"Lisp is awesome"| \\ \hline
+    Numbers & \texttt{9}, \texttt{12.2}, \texttt{9e10}, \texttt{\textbackslash\#x2f}, \texttt{10/3} \\ \hline
+    Strings & \texttt{"Bob"}, \texttt{"Lisp is awesome"} \\ \hline
     % Couldn't figure out how to get backslashes followed by text
     % syntax-highlighted properly. Oh well.
     Characters & \texttt{\#\textbackslash{}a}, \texttt{\#\textbackslash{}linefeed} \\ \hline
@@ -90,15 +90,15 @@
   Creating a cons cell: \cl|(cons 1 2)|
 \end{frame}
 
-\begin{frame}{car and cdr}
-  car:
+\begin{frame}{\texttt{car} and \texttt{cdr}}
+  \texttt{car}:
   \begin{itemize}
   \item \cl|car| returns the value of the first element of a cons cell
   \item \cl|(car (cons 1 2)) -> 1|
   \item Alternate notation: \cl|(first (cons 1 2))|
   \item \cl|car| stands for ``Contents of the Address part of Register''
   \end{itemize}
-  cdr:
+  \texttt{cdr}:
   \begin{itemize}
   \item \cl|cdr| returns the value of the second element of a cons cell
   \item \cl|(cdr (cons 1 2)) -> 2|
@@ -124,7 +124,7 @@ Example:
 \end{minted}
 \end{frame}
 
-\begin{frame}{Calling functions}
+\begin{frame}{Calling Functions}
 \begin{itemize}
 \item The first element of an evaluated list is the function name to be called.
 \item The rest of the elements are arguments to the function.
@@ -136,5 +136,198 @@ Examples:
 \item \texttt{a and (b or c)} would be written \cl|(and a (or b c))|
 \item \texttt{foo(x, y)} (in a C-like language) would be written \cl|(foo x y)|
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Quoting}
+  \begin{itemize}
+  \item Quoting delays evaluation of an S-expression.
+  \item Without quoting, the first element of a list is treated as a function.
+  \end{itemize}
+Examples:
+\begin{itemize}
+\item \cl|(+ 2 3) -> 5|
+\item \cl|'(+ 2 3) -> (+ 2 3)|
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Defining Functions}
+\blue{De}fine \blue{fun}ctions with \cl|defun|. The general form is:
+\begin{clcode}
+(defun FUNCTION-NAME (ARGUMENTS...)
+  "OPTIONAL-DOCUMENTATION..."
+  BODY...)
+\end{clcode}
+Optional and default parameters are also possible, but we won't go over those today.
+
+Example:
+\begin{clcode}
+(defun add (first second)
+  "Add FIRST to SECOND and return the result."
+  (+ first second))
+\end{clcode}
+Convention dictates that variable names be ALL CAPS in the docstring.
+\end{frame}
+
+\begin{frame}[fragile]{Conditionals}
+  The general form is:
+  \begin{clcode}
+    (if cond then else...)
+  \end{clcode}
+  \begin{itemize}
+  \item \texttt{then} is evaluated if \texttt{cond} is not \cl|nil|.
+  \item \texttt{else...} is evaluated if \texttt{cond} is \cl|nil|.
+  \item \cl|if| returns the value of the expression that was evaluated; either \texttt{then} or \texttt{else...}. This is a general functional programming ``thing''.
+  \item To evaluate multiple expressions in \texttt{then}, use \cl|progn| or \cl|block|.
+  \item \cl|nil| is false as in other languages, and everything else is true (\cl|t|).
+  \item Unlike C, \cl|0| is not considered false.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{progn}}
+  \cl|progn| evaluates all expressions in its body and returns the result of the last one. The general form is:
+  \begin{clcode}
+    (progn body...)
+  \end{clcode}
+A contrived example of the use of \cl|progn| with \cl|if|:
+\begin{clcode}
+(if (player-won)
+  (progn
+    (record-winner player)
+    (1+ wins))
+  wins)
+\end{clcode}
+\end{frame}
+
+\begin{frame}[fragile]{Defining Variables}
+\texttt{let}:
+\begin{itemize}
+\item Allows definition of multiple variables that are accessible
+  within the scope of the body. The general form is:
+\begin{clcode}
+(let ((var1 value) (var2 value) ... (varn value)) body...)
+\end{clcode}
+\item The last statement in the body is returned.
+\end{itemize}
+\texttt{defvar}:
+\begin{itemize}
+\item Defines a global variable. The general form is:
+  \begin{clcode}
+    (defvar name init-value)
+  \end{clcode}
+\item These variables are global! So don't use this often.
+\item Does not fit the functional paradigm.
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Practice Problems: \texttt{my-square}}
+  Define a function \texttt{my-square} that returns the square of the argument.
+
+  Here is a skeleton:
+  \begin{clcode}
+(defun my-square (num)
+  "Return the square of NUM."
+  ;; Works only for 5 and -5 :)
+  25)
+  \end{clcode}
+\end{frame}
+
+\begin{frame}[fragile]{Practice Problems: \texttt{my-square}: Solution}
+  Possible solution:
+  \begin{clcode}
+(defun my-square (num)
+  "Return the square of NUM."
+  (* x x))
+  \end{clcode}
+\end{frame}
+
+\begin{frame}[fragile]{Practice Problems: \texttt{my-count}}
+  Define a recursive function that returns the number of elements in a list. You can't use \cl|(length)|!.
+
+Here is a skeleton:
+\begin{clcode}
+(defun my-count (list)
+  "Return the number of elements in LIST."
+  ;; Works only for lists of length 10 :)
+  10)
+\end{clcode}
+
+Expected results:
+\begin{clcode}
+  (my-count nil) -> 0
+  (my-count '()) -> 0
+  (my-count '(a b c)) -> 3
+  (my-count '(i get the point)) -> 4
+\end{clcode}
+\end{frame}
+
+\begin{frame}[fragile]{Practice Problems: \texttt{my-count}: Solution}
+Possible solution:
+  \begin{clcode}
+(defun my-count (list)
+  "Return the number of elements in LIST."
+  (let ((next-cell (cdr l)))
+    (if next-cell
+        (1+ (my-count next-cell))
+      1)))
+  \end{clcode}
+\end{frame}
+
+\begin{frame}[fragile]{Practice Problems: \texttt{my-last}}
+Define a recursive function \texttt{my-last} that returns the last element in a list. You can't use \cl|(last)|! Don't forget the docstring.
+
+Expected results:
+\begin{clcode}
+  (my-last nil) -> nil
+  (my-last '(hello world)) -> (world)
+  (my-last '(a b c d)) -> (d)
+\end{clcode}
+\end{frame}
+
+\begin{frame}[fragile]{Practice Problems: \texttt{my-last}: Solution}
+  Possible solution:
+  \begin{clcode}
+(defun my-last (list)
+  "Return the last cons cell of LIST.
+Should behave similar to `last'."
+  (let ((next-cell (cdr list)))
+    (if next-cell
+        (my-last next-cell)
+      list))
+  \end{clcode}
+\end{frame}
+
+\begin{frame}[fragile]{Practice Problems: \texttt{my-reverse}}
+  Define a recursive function \texttt{my-reverse} that returns a copy
+  of the list in reverse order. You can't use \cl|(reverse)|!
+
+Expected results:
+\begin{clcode}
+  (my-reverse nil) -> nil
+  (my-reverse '(a)) -> (a)
+  (my-reverse '(a b c d)) -> (d c b a)
+\end{clcode}
+\end{frame}
+
+\begin{frame}[fragile]{Practice Problems: \texttt{my-reverse}: Solution}
+  Possible solution:
+  \begin{clcode}
+(defun my-reverse (list)
+  "Return a reversed copy of LIST."
+  (if (cdr list)
+      (append (last list) (my-reverse (butlast list)))
+    list))
+  \end{clcode}
+\end{frame}
+
+\begin{frame}{Do people actually use Lisp?}
+  \textbf{Yes!}
+  \begin{itemize}
+  \item \textbf{AutoLISP:} The integrated scripting language for AutoCAD and
+    other Autodesk products.
+  \item \textbf{Mirai:} A 3D graphics suite used to animate Gollum's face in The Lord of the Rings.
+  \item \textbf{Dynamic Analysis and Replanning Tool (DART):} An AI research
+    project part of the United States Defense Advanced Research
+    Projects Agency (DARPA).
+  \item \textbf{The Emacs Editor:} 80\% is written in Emacs Lisp.
+  \end{itemize}
 \end{frame}
 \end{document}
