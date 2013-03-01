@@ -1,10 +1,13 @@
 * Introduction to Lisp
 
-Lecture for Dr. Kurmas' CIS 343 Structure of Programming Languages
+These is a lecture for Dr. Kurmas' CIS 343 Structure of Programming
+Languages at Grand Valley State University.
 
-The Beamer presentation is =lisp-intro.tex=.
+You can find the PDF here: http://seanfisk.github.com/kurmas-lisp/lisp-intro.pdf
 
 ** Building the presentation
+
+The Beamer presentation is =lisp-intro.tex=.
 
 *** Necessaries
 
