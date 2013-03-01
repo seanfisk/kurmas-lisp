@@ -2,7 +2,7 @@
 
 Lecture for Dr. Kurmas' CIS 343 Structure of Programming Languages
 
-The Beamer presentation is =presentation/lisp-intro.tex=.
+The Beamer presentation is =lisp-intro.tex=.
 
 ** Building the presentation
 
@@ -26,7 +26,7 @@ repository.
 
 *** Building
 
-From the =presentation= directory, run:
+From the top directory, run:
     : scons
 
 That's it! It will take a minute to build.
