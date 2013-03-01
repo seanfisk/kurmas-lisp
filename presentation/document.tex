@@ -150,6 +150,24 @@ Example:
 \includegraphics[height=\textheight/3]{dot/abcd}
 \end{frame}
 
+\begin{frame}{Lisp Environment}
+  \section{Lisp Environment}
+  \begin{itemize}
+  \item We will be using \textbf{GNU Clisp} as our Common Lisp implementation.
+  \item Log in to your EOS account using your favorite SSH client
+    (e.g., PuTTY on Windows, \texttt{ssh} on OS X or GNU/Linux) or
+    through VNC.
+  \item Start an editor and a terminal emulator.
+  \item Run Clisp by typing \texttt{clisp} on the command-line. You
+    will see a Common Lisp REPL (Read-Eval-Print-Loop) appear.
+  \item Files can be loaded into the Lisp environment in two ways:
+    \begin{itemize}
+    \item Load the file in Clisp by running \cl|(load "myfile.lisp")| in the REPL.
+    \item Initialize Clisp with the file by running \mint{bash}|clisp -i myfile.lisp| on the command-line.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Calling Functions}
 \section{Writing Lisp}
 \begin{itemize}
