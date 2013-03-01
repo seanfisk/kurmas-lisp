@@ -1,0 +1,4 @@
+digraph {
+        node[shape=record];
+        cons [label="1|2"];
+}

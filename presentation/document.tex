@@ -18,6 +18,8 @@
 \addbibresource{citations.bib}
 \nocite{*}
 
+\usepackage{graphicx}
+
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,urlcolor=blue}
 
@@ -97,6 +99,8 @@
   \end{itemize}
 
   Creating a cons cell: \cl|(cons 1 2)|
+
+  \includegraphics{dot/cons}
 \end{frame}
 
 \begin{frame}{\texttt{car} and \texttt{cdr}}
@@ -131,6 +135,17 @@ Example:
 ((kurmas wolffe engelsma nandigam)
  (c ruby lisp ada))
 \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{More List Examples}
+  \begin{clcode}
+    (A B C)
+  \end{clcode}
+\includegraphics[height=\textheight/3]{dot/abc}
+\begin{clcode}
+  (A (B C) D)
+\end{clcode}
+\includegraphics[height=\textheight/3]{dot/abcd}
 \end{frame}
 
 \begin{frame}{Calling Functions}
@@ -348,7 +363,7 @@ Expected results:
   \item Jordon Biondo \mailtohref{biondoj@mail.gvsu.edu}
   \end{itemize}
   The following free and open-source software was used to produce this presentation: \\
-  \LaTeX, Beamer, Minted, Pygments, Emacs, AUCTeX, SCons, Clisp, cloc
+  \LaTeX, Beamer, Biber, Biblatex, Minted, Pygments, Emacs, AUCTeX, SCons, Clisp, cloc, Graphviz
 \end{frame}
 \begin{frame}{References}
   \printbibliography

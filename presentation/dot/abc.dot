@@ -1,0 +1,24 @@
+digraph {
+        splines = false;
+        edge [tailclip=false];
+        {
+                node [shape=record,label="<car>|<cdr>"];
+                rank = "same";
+                L1;
+                L2;
+                L3 [label="<car>|<cdr>nil"];
+        }
+        {
+                rank = "same";
+                node [shape=none];
+                A [label="A"];
+                B [label="B"];
+                C [label="C"];
+        }
+        
+        L1:car:c -> A;
+        L1:e -> L2:w;
+        L2:car:c -> B;
+        L2:e -> L3:w;
+        L3:car:c -> C;
+}

@@ -1,0 +1,26 @@
+# -*- mode: python -*-
+
+import os
+
+Import('env')
+
+# Create Graphviz dot builders.
+dot_builders = {}
+for ext in ['png', 'svg']:
+    builder = Builder(
+        action='dot -T{0} $SOURCE -o $TARGET'.format(ext),
+        suffix='.{0}'.format(ext),
+        src_suffix='.dot')
+    dot_builders['GraphvizDot{0}'.format(ext.upper())] = builder
+
+# Add dot builders to environment.
+env.Append(BUILDERS=dot_builders)
+
+cons_png = env.GraphvizDotPNG('cons')
+cons_svg = env.GraphvizDotSVG('cons')
+abc_png = env.GraphvizDotPNG('abc')
+abc_svg = env.GraphvizDotSVG('abc')
+abcd_png = env.GraphvizDotPNG('abcd')
+abcd_svg = env.GraphvizDotSVG('abcd')
+
+Export('cons_png cons_svg abc_png abc_svg abcd_png abcd_svg')

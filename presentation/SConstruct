@@ -22,4 +22,9 @@ env.AppendUnique(PDFLATEXFLAGS='-shell-escape')
 env.SetDefault(TEXMFHOME=os.path.join(os.environ['HOME'], 'texmf'))
 
 pdf = env.PDF('document.tex')
+
+SConscript('dot/SConscript', exports='env')
+Import('*')
+
+env.Depends(pdf, [cons_png, abc_png, abcd_png])
 Default(pdf)
