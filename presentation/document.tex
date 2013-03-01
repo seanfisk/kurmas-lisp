@@ -1,27 +1,19 @@
-\RequirePackage[l2tabu,orthodox]{nag}
-\documentclass{article}
-% Uncomment to use the KOMA-Script scrartcl class. This allows things such as a subtitle.
-% \documentclass{scrartcl}
-% If you use the above, uncomment this to use the same font as the `article' class.
-% \setkomafont{disposition}{\normalfont\bfseries}
-
-\usepackage{microtype}
-% Uncomment if using references.
-% \usepackage{csquotes}
-% \usepackage[backend=biber,style=authoryear]{biblatex}
-% \addbibresource{citations.bib}
-\usepackage{hyperref}
-\hypersetup{hidelinks}
-
-\newcommand{\mailtohref}[1]{\href{mailto:#1}{$<$\nolinkurl{#1}$>$}}
-
-\title{Just a \LaTeX template}
-\author{Sean Fisk \mailtohref{sean@seanfisk.com}}
-
+\documentclass{beamer}
+\usetheme{PaloAlto}
+\usecolortheme{orchid}
+\title[Lisp Introduction]{Introduction to Lisp}
+\author{Jordan Biondo \\ Sean Fisk}
+\institute{Grand Valley State University}
+\date{\today}
 \begin{document}
-\maketitle
 
-% Uncomment if using references.
-% \printbibliography
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Introduction}
+This is a short introduction to Beamer class.
+\end{frame}
 
 \end{document}
