@@ -22,11 +22,11 @@ def git_current_branch():
 def upload_to_gh_pages(target, source, env):
     current_branch = git_current_branch()
     with TemporaryFile() as temp_file:
-        with open(RESUME_PDF_NAME) as pdf_file:
+        with open(PRESENTATION_NAME) as pdf_file:
             shutil.copyfileobj(pdf_file, temp_file)
         subprocess.check_call(['git', 'checkout', 'gh-pages'])
         temp_file.seek(0)
-        with open(RESUME_PDF_NAME, 'w') as pdf_file:
+        with open(PRESENTATION_NAME, 'w') as pdf_file:
             shutil.copyfileobj(temp_file, pdf_file)
     subprocess.check_call(['git', 'add', PRESENTATION_NAME])
     subprocess.check_call(['git', 'commit', '-m', 'Updated presentation.'])
