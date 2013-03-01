@@ -21,7 +21,7 @@ env.AppendUnique(PDFLATEXFLAGS='-shell-escape')
 # Look in standard directory ~/texmf for .sty files.
 env.SetDefault(TEXMFHOME=os.path.join(os.environ['HOME'], 'texmf'))
 
-pdf = env.PDF('document.tex')
+pdf = env.PDF('lisp-intro.tex')
 
 SConscript('dot/SConscript', exports='env')
 Import('*')

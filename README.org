@@ -2,7 +2,7 @@
 
 Lecture for Dr. Kurmas' CIS 343 Structure of Programming Languages
 
-The Beamer presentation is =presentation/document.tex=.
+The Beamer presentation is =presentation/lisp-intro.tex=.
 
 ** Building the presentation
 
