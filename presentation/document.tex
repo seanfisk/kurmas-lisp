@@ -1,12 +1,19 @@
 % -*- coding: utf-8; -*-
 \RequirePackage[l2tabu,orthodox]{nag}
 \documentclass{beamer}
+\usetheme{PaloAlto}
+\usecolortheme{orchid}
+
+% Using a modified version of minted that supports inline code. See
+% the bottom of this page:
+% <https://code.google.com/p/minted/issues/detail?id=15>.
 \usepackage{minted}
 \newminted{cl}{}
 \newmint{cl}{}
+
 \usepackage{tabu}
-\usetheme{PaloAlto}
-\usecolortheme{orchid}
+
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
 
 \title[Lisp Introduction]{Introduction to Lisp}
 \author{Jordan Biondo \\ Sean Fisk}
@@ -14,74 +21,120 @@
 \date{\today}
 
 \begin{document}
-
+% In Emacs, you can use `C-x [' and `C-x ]' to jump forward and
+% backward slides.
+
 \begin{frame}
-\titlepage
+  \titlepage
 \end{frame}
-
-
+
 \begin{frame}{Introduction}
   \begin{itemize}
-  \item \textbf{Lis}t \textbf{P}rocessing, also know as Lisp
-  \item Second oldest high-level programming language
+  \item \blue{Lis}t \blue{P}rocessing, also know as Lisp
+  \item Second oldest currently used high-level programming language
   \item Invented by John McCarthy at MIT in 1958
   \item Leading family of functional programming languages
   \end{itemize}
 \end{frame}
-
-\begin{frame}{Structure of the Language}
-\begin{itemize}
-\item Parenthesized prefix notation
-\item Data is contained in s-expressions
-\item Code is data
-\item Everything in Lisp is either an atom or a list.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Atoms}
-Represent the most basic data types in Lisp.
-
-Examples:
-
-\begin{tabu}{| X | X |}
-  \hline
-  Numbers & \texttt{9}, \texttt{12.2}, \texttt{9e10}, \texttt{\#x2f}, \texttt{10/3} \\ \hline
-  Strings & \texttt{"Bob"}, \texttt{"Lisp is awesome"} \\ \hline
-  Characters & \texttt{\#\textbackslash{}a}, \texttt{\#\textbackslash{}linefeed} \\ \hline
-\end{tabu}
-\end{frame}
-
-\begin{frame}{Cons Cells}
-\begin{itemize}
-\item Stands for ``construct''
-\item Data structure containing two pointers
-\item Like a linked-list cell with two elements
+
+\begin{frame}{Functional Programming}
   \begin{itemize}
-  \item A pointer to the cells value
-  \item A pointer to the next cell
+  \item Functional languages view computation as the evaluation of mathematical functions.
+  \item Functional programming is based on lambda calculus.
+  \item Functions have no side effects:
+    \begin{itemize}
+    \item They avoid mutable data, i.e., changing values outside of a
+      function's scope.
+    \item Lisp can be written functionally, but is not a purely
+      functional language. It may also be written with typical
+      imperative or object-oriented approaches.
+    \end{itemize}
   \end{itemize}
-\end{itemize}
-
-Creating a cons cell: \cl|(cons 1 2)|
 \end{frame}
+
+\begin{frame}{Structure of the Language}
+  \begin{itemize}
+  \item Parenthesized prefix notation
+  \item Data is contained in S-expressions
+  \item Code is data
+  \item Everything in Lisp is either an atom or a list.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Atoms}
+  Represent the most basic data types in Lisp.
 
+  Examples:
+
+  \begin{tabu}{| X | X |}
+    \hline
+    Numbers & \cl|9|, \cl|12.2|, \cl|9e10|, \cl|\#x2f|, \cl|10/3| \\ \hline
+    Strings & \cl|"Bob"|, \cl|"Lisp is awesome"| \\ \hline
+    % Couldn't figure out how to get backslashes followed by text
+    % syntax-highlighted properly. Oh well.
+    Characters & \texttt{\#\textbackslash{}a}, \texttt{\#\textbackslash{}linefeed} \\ \hline
+  \end{tabu}
+\end{frame}
+
+\begin{frame}{Cons Cells}
+  \begin{itemize}
+  \item Stands for ``construct''
+  \item Data structure containing two pointers
+  \item Like a linked-list cell with two elements
+    \begin{itemize}
+    \item A pointer to the cells value
+    \item A pointer to the next cell
+    \end{itemize}
+  \end{itemize}
+
+  Creating a cons cell: \cl|(cons 1 2)|
+\end{frame}
+
 \begin{frame}{car and cdr}
   car:
   \begin{itemize}
-  \item \texttt{car} returns the value of the first element of a cons cell
+  \item \cl|car| returns the value of the first element of a cons cell
   \item \cl|(car (cons 1 2)) -> 1|
   \item Alternate notation: \cl|(first (cons 1 2))|
-  \item \texttt{car} stands for ``Contents of the Address part of Register''
-\end{itemize}
-cdr:
-\begin{itemize}
-  \item \texttt{cdr} returns the value of the second element of a cons cell
+  \item \cl|car| stands for ``Contents of the Address part of Register''
+  \end{itemize}
+  cdr:
+  \begin{itemize}
+  \item \cl|cdr| returns the value of the second element of a cons cell
   \item \cl|(cdr (cons 1 2)) -> 2|
   \item Alternate notation: \cl|(rest (cons 1 2))|
-  \item \texttt{cdr} stands for ``Contents of the Decrement part of Register''
-\end{itemize}
-The names are historical and do not have any current meaning.
+  \item \cl|cdr| stands for ``Contents of the Decrement part of Register''
+  \end{itemize}
+  The names are historical and do not have any current meaning.
 \end{frame}
-
+
+% `fragile' is needed for the minted block.
+\begin{frame}[fragile]{Lists}
+\begin{itemize}
+\item Ordered collection of cons cells.
+\item The \cl|cdr| of each cons is a pointer to the next cons, just like a linked list.
+\item The last element in a list has a \cl|nil| \cl|cdr|, signifying the end of the list.
+\item Nested lists are expressed in a parenthesized notation known as an \textbf{S-expression}.
+\item S-expressions can be though of as trees of cons cells.
+\end{itemize}
+Example:
+\begin{minted}{cl}
+((kurmas wolffe engelsma nandigam)
+ (c ruby lisp ada))
+\end{minted}
+\end{frame}
+
+\begin{frame}{Calling functions}
+\begin{itemize}
+\item The first element of an evaluated list is the function name to be called.
+\item The rest of the elements are arguments to the function.
+\item The arguments may themselves contain lists to be evaluated.
+\end{itemize}
+Examples:
+\begin{itemize}
+\item \texttt{2 + 3 * 5} would be written \cl|(+ 2 (* 3 5))|
+\item \texttt{a and (b or c)} would be written \cl|(and a (or b c))|
+\item \texttt{foo(x, y)} (in a C-like language) would be written \cl|(foo x y)|
+\end{itemize}
+\end{frame}
 \end{document}
