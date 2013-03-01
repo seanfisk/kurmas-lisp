@@ -13,6 +13,11 @@
 
 \usepackage{tabu}
 
+% \usepackage{csquotes}
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{citations.bib}
+\nocite{*}
+
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,urlcolor=blue}
 
@@ -331,7 +336,8 @@ Expected results:
   \item \textbf{Dynamic Analysis and Replanning Tool (DART):} An AI research
     project part of the United States Defense Advanced Research
     Projects Agency (DARPA).
-  \item \textbf{The Emacs Editor:} 80\% is written in Emacs Lisp.
+  \item \textbf{The Emacs Editor:} 80\% is written in Emacs Lisp,
+    adding up to an insane 1,131,162 lines of Emacs Lisp code!
   \end{itemize}
 \end{frame}
 
@@ -342,6 +348,9 @@ Expected results:
   \item Jordon Biondo \mailtohref{biondoj@mail.gvsu.edu}
   \end{itemize}
   The following free and open-source software was used to produce this presentation: \\
-  \LaTeX, Beamer, Minted, Pygments, Emacs, AUCTeX, SCons, Clisp
+  \LaTeX, Beamer, Minted, Pygments, Emacs, AUCTeX, SCons, Clisp, cloc
+\end{frame}
+\begin{frame}{References}
+  \printbibliography
 \end{frame}
 \end{document}
