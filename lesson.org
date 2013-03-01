@@ -1,3 +1,5 @@
+* THIS IS NOT CURRENT. See =document.tex= for the current content.
+
 * Lesson
 ** Introduction
   - (Lis)t (P)rocessing aka Lisp
@@ -7,7 +9,7 @@
   - Used extensively in the area of Artificial Intelligence
 ** Functional Programming
    Functional language treat computation as the evaluation of mathematical functions.
-*** Functions have no side effect   
+*** Functions have no side effect
     They avoid mutable data, aka, changing values outside of a functions scope
     Lisp can be written functionally, but is not a purely functional language as it may also
     be written with typical imperative or object-oriented approaches.
@@ -103,7 +105,7 @@
      A recursive function that return the number of elements in a list
      - you can't use (length)!
 ***** Solution
-#+BEGIN_SRC lisp    
+#+BEGIN_SRC lisp
 (defun my-last(l)
   "Returns the last elemenent in the list."
   (let ((next-cell (cdr l)))
@@ -116,8 +118,8 @@
 *** Practice
 **** my-sqr
      Returns the paramenter sqared
-***** Solution   
-#+BEGIN_SRC lisp    
+***** Solution
+#+BEGIN_SRC lisp
 (defun my-sqr(x)
   "Returns x^2."
   (* x x))
@@ -126,8 +128,8 @@
 **** my-last
    A recursive function that return the last element in a list
    You can't use (last)!
-***** Solution   
-#+BEGIN_SRC lisp    
+***** Solution
+#+BEGIN_SRC lisp
 (defun my-count(l)
   "Returns the length of the list."
   (let ((next-cell (cdr l)))
@@ -138,14 +140,12 @@
 
 **** my-reverse
    A recursive function that returns the reverse of a list
-***** Solution   
-#+BEGIN_SRC lisp    
+***** Solution
+#+BEGIN_SRC lisp
 (defun my-reverse(l)
   "Returns l a reversed copy of l."
   (if (cdr l)
-      (then 
+      (then
        (append (last l) (my-reverse (butlast l))))
     (else l)))
 #+END_SRC
-
-      
