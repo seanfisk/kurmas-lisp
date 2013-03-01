@@ -168,6 +168,31 @@ Example:
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Editing Lisp}
+  Preferably, use an editor with parentheses matching.
+  \includegraphics[height=\textheight/4]{images/emacs}
+  The Emacs Editor
+  \begin{itemize}
+    \item Emacs is an editor written mostly in Lisp (Emacs Lisp).
+    \item It is very adept at editing Lisp code, especially with \texttt{paredit}.
+    \item Preferred editor for Jordon and Sean.
+    \end{itemize}
+  \end{frame}
+
+\begin{frame}[fragile]{Editing Lisp - Emacs}
+On EOS, run the following to obtain a base configuration for Lisp:
+\begin{minted}{bash}
+cd
+# Backup old files
+mv .emacs .emacs.old
+mv .emacs.d .emacs.d.old
+# Copy base config
+cp -r ~fiskse/.emacs.d-lisp .emacs.d
+# Run emacs
+emacs
+\end{minted}
+\end{frame}
+
 \begin{frame}{Calling Functions}
 \section{Writing Lisp}
 \begin{itemize}
