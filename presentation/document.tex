@@ -1,5 +1,9 @@
+% -*- coding: utf-8; -*-
 \RequirePackage[l2tabu,orthodox]{nag}
 \documentclass{beamer}
+\usepackage{minted}
+\newminted{cl}{}
+\newmint{cl}{}
 \usepackage{tabu}
 \usetheme{PaloAlto}
 \usecolortheme{orchid}
@@ -8,6 +12,7 @@
 \author{Jordan Biondo \\ Sean Fisk}
 \institute{Grand Valley State University}
 \date{\today}
+
 \begin{document}
 
 \begin{frame}
@@ -32,8 +37,9 @@
 \item Everything in Lisp is either an atom or a list.
 \end{itemize}
 
-\end{frame}{Atoms}
+\end{frame}
 
+\begin{frame}{Atoms}
 Represent the most basic data types in Lisp.
 
 Examples:
@@ -44,5 +50,34 @@ Examples:
   Strings & \texttt{"Bob"}, \texttt{"Lisp is awesome"} \\ \hline
   Characters & \texttt{\#\textbackslash{}a}, \texttt{\#\textbackslash{}linefeed} \\ \hline
 \end{tabu}
+\end{frame}
+
+\begin{frame}{Cons Cells}
+\begin{itemize}
+\item Stands for ``construct''
+\item Data structure containing two pointers
+\item Like a linked-list cell with two elements
+  \begin{itemize}
+  \item A pointer to the cells value
+  \item A pointer to the next cell
+  \end{itemize}
+\end{itemize}
+
+Creating a cons cell: \cl|(cons 1 2)|
+\end{frame}
+
+\begin{frame}{car and cdr}
+  \begin{itemize}
+  \item \texttt{car} returns the value of the first element of a cons cell
+  \item \cl|(car (cons 1 2)) -> 1|
+  \item Alternate notation: \cl|(first (cons 1 2))|
+  \item \texttt{cdr} returns the value of the second element of a cons cell
+  \item \cl|(cdr (cons 1 2)) -> 2|
+  \item Alternate notation: \cl|(rest (cons 1 2))|
+  \item \texttt{car} stands for ``Contents of the Address part of Register number''
+  \item \texttt{cdr} stands for ``Contents of the Decrement part of Register number''
+  \item The names are historical and do not have any current meaning.
+  \end{itemize}
+\end{frame}
 
 \end{document}

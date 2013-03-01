@@ -3,7 +3,7 @@
 
 import os
 
-env = Environment()
+env = Environment(ENV={'PATH': os.environ['PATH']})
 
 # Use LuaTeX instead of pdfTeX.
 env.Replace(PDFLATEX='lualatex')
@@ -16,7 +16,7 @@ env.Replace(BIBTEX='biber')
 env.AppendUnique(PDFLATEXFLAGS='-synctex=1')
 
 # Shell escape. Needed by minted and dot2tex to name a few.
-# env.AppendUnique(PDFLATEXFLAGS='-shell-escape')
+env.AppendUnique(PDFLATEXFLAGS='-shell-escape')
 
 # Look in standard directory ~/texmf for .sty files.
 env.SetDefault(TEXMFHOME=os.path.join(os.environ['HOME'], 'texmf'))
