@@ -67,17 +67,21 @@ Creating a cons cell: \cl|(cons 1 2)|
 \end{frame}
 
 \begin{frame}{car and cdr}
+  car:
   \begin{itemize}
   \item \texttt{car} returns the value of the first element of a cons cell
   \item \cl|(car (cons 1 2)) -> 1|
   \item Alternate notation: \cl|(first (cons 1 2))|
+  \item \texttt{car} stands for ``Contents of the Address part of Register''
+\end{itemize}
+cdr:
+\begin{itemize}
   \item \texttt{cdr} returns the value of the second element of a cons cell
   \item \cl|(cdr (cons 1 2)) -> 2|
   \item Alternate notation: \cl|(rest (cons 1 2))|
-  \item \texttt{car} stands for ``Contents of the Address part of Register number''
-  \item \texttt{cdr} stands for ``Contents of the Decrement part of Register number''
-  \item The names are historical and do not have any current meaning.
-  \end{itemize}
+  \item \texttt{cdr} stands for ``Contents of the Decrement part of Register''
+\end{itemize}
+The names are historical and do not have any current meaning.
 \end{frame}
 
 \end{document}
