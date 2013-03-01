@@ -1,0 +1,48 @@
+\RequirePackage[l2tabu,orthodox]{nag}
+\documentclass{beamer}
+\usepackage{tabu}
+\usetheme{PaloAlto}
+\usecolortheme{orchid}
+
+\title[Lisp Introduction]{Introduction to Lisp}
+\author{Jordan Biondo \\ Sean Fisk}
+\institute{Grand Valley State University}
+\date{\today}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Introduction}
+  \begin{itemize}
+  \item \textbf{Lis}t \textbf{P}rocessing, also know as Lisp
+  \item Second oldest high-level programming language
+  \item Invented by John McCarthy at MIT in 1958
+  \item Leading family of functional programming languages
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Structure of the Language}
+\begin{itemize}
+\item Parenthesized prefix notation
+\item Data is contained in s-expressions
+\item Code is data
+\item Everything in Lisp is either an atom or a list.
+\end{itemize}
+
+\end{frame}{Atoms}
+
+Represent the most basic data types in Lisp.
+
+Examples:
+
+\begin{tabu}{| X | X |}
+  \hline
+  Numbers & \texttt{9}, \texttt{12.2}, \texttt{9e10}, \texttt{\#x2f}, \texttt{10/3} \\ \hline
+  Strings & \texttt{"Bob"}, \texttt{"Lisp is awesome"} \\ \hline
+  Characters & \texttt{\#\textbackslash{}a}, \texttt{\#\textbackslash{}linefeed} \\ \hline
+\end{tabu}
+
+\end{document}
