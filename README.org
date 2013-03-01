@@ -1,0 +1,38 @@
+* Introduction to Lisp
+
+Lecture for Dr. Kurmas' CIS 343 Structure of Programming Languages
+
+The Beamer presentation is =presentation/document.tex=.
+
+** Building the presentation
+
+*** Necessaries
+
+**** External, must be installed
+
+- [[http://scons.org/][SCons]] - build tool
+- TeX distribution - compiled on [[http://www.tug.org/texlive/][TeX Live 2012]]; other implementations
+  may or may not work
+- [[http://pygments.org/][Pygments]] - syntax highlighter
+- [[http://www.graphviz.org/][Graphviz]] - graph generator; uses =dot=
+
+**** Included in TeX Live 2012
+
+- [[https://bitbucket.org/rivanvx/beamer/wiki/Home][Beamer]]
+- [[http://biblatex-biber.sourceforge.net/][BibLaTeX and Biber]]
+
+[[https://code.google.com/p/minted/][Minted]] is also required but a patched version is included in this
+repository.
+
+*** Building
+
+From the =presentation= directory, run:
+    : scons
+
+That's it! It will take a minute to build.
+
+The presentation uses an excessive amount of syntax
+highlighting. However, I think it adds to the color and look of the
+presentation. This does add a lot to the compilation time because the
+code blocks are syntax highlighted by shelling out to =pygmentize=
+every time. I'm not sure how to tell it not to regenerate those files.
